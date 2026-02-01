@@ -47,13 +47,13 @@ To make semantic search fast, I use an IVFFLAT ANN index with 5 inverted lists. 
 
 The semantic and a lexical scores are computed per document, then fused with Reciprocal Rank Fusion (RRF). For each document $d$:
 
-$$\text{RRF}(d) = \sum_{r \in \{\text{semantic}, \text{lexical}\}} \frac{1}{k + \text{rank}_r(d)}$$
+$$\text{RRF}(d) = \sum_{r \in \{\text{semantic}, \text{lexical}\}} \frac{1}{k + \text{rank}_{r}(d)}$$
 
-where $k$ is a constant (e.g. 60) and $\text{rank}_r(d)$ is $d$'s 1-based rank in ranking $r$. Documents ranking well in both lists get a higher score. The reason for using fused score is to make this scalable with a larger corpus where we want to filter out docs with low RRF; at ~25 docs I still pass all of them to the next stage, and RRF just helps with reordering.
+where $k$ is a constant (e.g. 60) and $\text{rank}_{r}(d)$ is $d$'s 1-based rank in ranking $r$. Documents ranking well in both lists get a higher score. The reason for using fused score is to make this scalable with a larger corpus where we want to filter out docs with low RRF; at ~25 docs I still pass all of them to the next stage, and RRF just helps with reordering.
 
 After RRF, the documents are reranked with Cohere's rerank-english-v3.0, then selected using a relative threshold so the number of documents returned adapts to the query. A document $d$ is kept if:
 
-$$d.\text{rerank\_score} \geq \max_{\text{docs}} \text{rerank\_score} - \Delta \quad \text{and} \quad d.\text{rerank\_score} \geq \text{MIN\_SCORE}$$
+$$d.\text{rerank\\_score} \geq \max_{\text{docs}} \text{rerank\\_score} - \Delta \quad \text{and} \quad d.\text{rerank\\_score} \geq \text{MIN\\_SCORE}$$
 
 We apply a relative threshold with a minimum score to adapt document selection to each query and filter low-quality matches. The goal is to return as many papers as actually contain the answer (e.g., 10, 2, or 0). In practice, this approach works well when reranker confidence is high; queries with low reranker scores are filtered by the absolute minimum score.
 
@@ -62,7 +62,7 @@ We apply a relative threshold with a minimum score to adapt document selection t
 
 The selected documents and their rerank scores are passed from the previous stage. Each chunk is scored as:
 
-$$\text{chunk\_score} = \text{rerank\_score}_d \times \text{sim}(c, q)$$
+$$\text{chunk\\_score} = \text{rerank\\_score}_{d} \times \text{sim}(c, q)$$
 
 where $d$ is the parent document, $c$ is the chunk, and $\text{sim}(c,q)$ is the chunk–query semantic similarity. Chunk relevance is modulated by document relevance. The top 10 chunks are selected for answer generation.
 
@@ -98,5 +98,5 @@ Retrieval quality could be further improved by training or fine-tuning a domain-
 ### Systematic evaluation of answer quality
 Evaluate generated answers against reference answers using token-level F1 to capture partial correctness and Exact Match (EM) for strict accuracy. This provides a clearer signal of both factual correctness and coverage, especially for technical questions.
 
-## Memory of previous questions
+### Memory of previous questions
 Enable the agent to retain the context of the conversation by storing previous questions and answers, using short-term session memory or long-term persistent memory, so it can handle follow-ups.
