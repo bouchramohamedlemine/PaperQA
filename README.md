@@ -76,10 +76,27 @@ The top 10 chunks' content is passed as context to the language model. If a ques
 
 ## 3. Improvements
 
-- Extract documents through web scraping—what are the best methods for that?
+### Automated document ingestion
 
-- Cache and monitor results for continuous improvement
-- Raw user input must not be passed to the system, there should be a layer that processes this input into a more meaningful query.
-- To make this more powerful, we could enhance the retrieval quality by training a knowledge retriever.
-- Evaluate answers using token‑level F1.
-- Report Exact Match (EM) scores.
+Extend the corpus by adding a robust web-scraping and ingestion pipeline (e.g. arXiv API). This would allow continuous expansion of the knowledge base while preserving metadata such as authorship, publication date, and venue.
+
+### Cache and monitor results
+
+Cache intermediate retrieval results (document rankings, reranker outputs, selected chunks) to reduce latency and cost. Add lightweight monitoring to track retrieval hit rates, reranker confidence distributions, and answer quality over time to enable iterative improvements.
+
+
+### Query understanding and rewriting layer
+
+Raw user queries should not be passed directly to the retriever. Introduce a query processing layer that rewrites user input into retrieval-optimized queries. 
+
+
+### Learned retriever for domain adaptation
+
+Retrieval quality could be further improved by training or fine-tuning a domain-specific retriever.
+
+
+### Systematic evaluation of answer quality
+Evaluate generated answers against reference answers using token-level F1 to capture partial correctness and Exact Match (EM) for strict accuracy. This provides a clearer signal of both factual correctness and coverage, especially for technical questions.
+
+## Memory of previous questions
+Enable the agent to retain the context of the conversation by storing previous questions and answers, using short-term session memory or long-term persistent memory, so it can handle follow-ups.
