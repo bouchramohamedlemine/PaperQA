@@ -14,9 +14,13 @@ We use a two-stage hierarchical retrieval with document gating.
 
 ### Demo video
 
-<video src="Video.MOV" controls width="100%">
+<!-- <video src="Video.MOV" controls width="100%">
   Your browser does not support the video tag. [Watch the demo video](Video.MOV) instead.
-</video>
+</video> -->
+
+
+https://github.com/user-attachments/assets/7b2ae74f-0cb0-462d-967c-0a1aa60acebd
+
 
 
 ## 2. Stages
