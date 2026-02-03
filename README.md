@@ -6,17 +6,20 @@ An AI agent that answers questions about research papers from arXiv on a specifi
 
 The goal is to make it easy for engineers and scientists to find quick, literature-backed answers to specific design choices.
 
-## 1. Process
-
-We use a two-stage hierarchical retrieval with document gating.
-
-![RAG Architecture](RAG.png)
-
 ### Demo video
 
 <!-- <video src="Video.MOV" controls width="100%">
   Your browser does not support the video tag. [Watch the demo video](Video.MOV) instead.
 </video> -->
+
+
+## 1. Pipeline
+
+We use a two-stage hierarchical retrieval with document gating.
+
+![RAG Architecture](RAG.png)
+
+
 
 
 https://github.com/user-attachments/assets/7b2ae74f-0cb0-462d-967c-0a1aa60acebd
