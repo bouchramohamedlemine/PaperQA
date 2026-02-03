@@ -13,6 +13,11 @@ The goal is to make it easy for engineers and scientists to find quick, literatu
 </video> -->
 
 
+https://github.com/user-attachments/assets/7b2ae74f-0cb0-462d-967c-0a1aa60acebd
+
+
+
+
 ## 1. Pipeline
 
 We use a two-stage hierarchical retrieval with document gating.
@@ -22,7 +27,6 @@ We use a two-stage hierarchical retrieval with document gating.
 
 
 
-https://github.com/user-attachments/assets/7b2ae74f-0cb0-462d-967c-0a1aa60acebd
 
 
 
