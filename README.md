@@ -25,6 +25,7 @@ We use a two-stage hierarchical retrieval with document gating.
 ![RAG Architecture](RAG.png)
 
 
+For the front-end we use **Next.js** (Typescript, React & Tailwind)
 
 
 
